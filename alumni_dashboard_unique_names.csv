@@ -1,0 +1,51 @@
+Alumni_ID,Name,Passout_Year,Innovation_Thoughts,Company,Job_Title,Location,GitHub_Profile,LinkedIn_Profile
+A001,Karan Patel,2022,AR/VR-based virtual classrooms,Google,Software Engineer,Delhi,https://github.com/karanpatel1,https://linkedin.com/in/karanpatel1
+A002,Neha Desai,2019,AI-driven personalized learning platform,IBM,DevOps Engineer,San Francisco,https://github.com/nehadesai2,https://linkedin.com/in/nehadesai2
+A003,Ananya Reddy,2011,Green energy solutions for campuses,Google,Software Engineer,Hyderabad,https://github.com/ananyareddy3,https://linkedin.com/in/ananyareddy3
+A004,Priya Khan,2012,Blockchain-based certificate verification,IBM,Project Manager,New York,https://github.com/priyakhan4,https://linkedin.com/in/priyakhan4
+A005,Varun Nair,2015,IoT smart campus system,TCS,Researcher,London,https://github.com/varunnair5,https://linkedin.com/in/varunnair5
+A006,Neha Das,2015,Online alumni mentoring network,Apple,Software Engineer,Bangalore,https://github.com/nehadas6,https://linkedin.com/in/nehadas6
+A007,Sneha Verma,2014,Online alumni mentoring network,Meta,Product Manager,Pune,https://github.com/snehaverma7,https://linkedin.com/in/snehaverma7
+A008,Neha Rastogi,2016,AI-driven personalized learning platform,Adobe,System Analyst,Pune,https://github.com/neharastogi8,https://linkedin.com/in/neharastogi8
+A009,Aarav Joshi,2021,Online alumni mentoring network,Microsoft,Web Developer,Bangalore,https://github.com/aaravjoshi9,https://linkedin.com/in/aaravjoshi9
+A010,Rohan Mehta,2012,Green energy solutions for campuses,Google,Consultant,Hyderabad,https://github.com/rohanmehta10,https://linkedin.com/in/rohanmehta10
+A011,Rahul Roy,2013,Automated attendance system using face recognition,Infosys,DevOps Engineer,Pune,https://github.com/rahulroy11,https://linkedin.com/in/rahulroy11
+A012,Arjun Verma,2011,Mobile app for student mental health support,Amazon,AI Engineer,Pune,https://github.com/arjunverma12,https://linkedin.com/in/arjunverma12
+A013,Aditya Reddy,2012,Mobile app for student mental health support,Meta,Data Scientist,New York,https://github.com/adityareddy13,https://linkedin.com/in/adityareddy13
+A014,Meera Sharma,2015,Green energy solutions for campuses,Apple,Web Developer,London,https://github.com/meerasharma14,https://linkedin.com/in/meerasharma14
+A015,Siddharth Rastogi,2017,Crowdfunding platform for student projects,Apple,Product Manager,Bangalore,https://github.com/siddharthrastogi15,https://linkedin.com/in/siddharthrastogi15
+A016,Neha Patel,2020,Blockchain-based certificate verification,Google,Project Manager,Pune,https://github.com/nehapatel16,https://linkedin.com/in/nehapatel16
+A017,Nisha Malik,2020,Data analytics for improving placements,Microsoft,System Analyst,San Francisco,https://github.com/nishamalik17,https://linkedin.com/in/nishamalik17
+A018,Priya Chopra,2016,Mobile app for student mental health support,Microsoft,AI Engineer,Toronto,https://github.com/priyachopra18,https://linkedin.com/in/priyachopra18
+A019,Divya Gupta,2019,Online alumni mentoring network,Wipro,Software Engineer,Pune,https://github.com/divyagupta19,https://linkedin.com/in/divyagupta19
+A020,Meera Khan,2015,AI-driven personalized learning platform,Meta,System Analyst,Hyderabad,https://github.com/meerakhan20,https://linkedin.com/in/meerakhan20
+A021,Aditya Verma,2011,AR/VR-based virtual classrooms,IBM,Project Manager,Mumbai,https://github.com/adityaverma21,https://linkedin.com/in/adityaverma21
+A022,Divya Malik,2012,IoT smart campus system,Apple,Project Manager,Pune,https://github.com/divyamalik22,https://linkedin.com/in/divyamalik22
+A023,Arjun Chopra,2016,AR/VR-based virtual classrooms,TCS,AI Engineer,Toronto,https://github.com/arjunchopra23,https://linkedin.com/in/arjunchopra23
+A024,Arjun Roy,2012,Online alumni mentoring network,TCS,Researcher,Chennai,https://github.com/arjunroy24,https://linkedin.com/in/arjunroy24
+A025,Aditya Mehta,2014,AI-driven personalized learning platform,Wipro,System Analyst,Delhi,https://github.com/adityamehta25,https://linkedin.com/in/adityamehta25
+A026,Meera Iyer,2016,Blockchain-based certificate verification,Infosys,Data Scientist,Mumbai,https://github.com/meeraiyer26,https://linkedin.com/in/meeraiyer26
+A027,Siddharth Roy,2012,Blockchain-based certificate verification,Google,Data Scientist,London,https://github.com/siddharthroy27,https://linkedin.com/in/siddharthroy27
+A028,Arjun Patel,2010,Green energy solutions for campuses,Amazon,Product Manager,Bangalore,https://github.com/arjunpatel28,https://linkedin.com/in/arjunpatel28
+A029,Vikram Roy,2013,Data analytics for improving placements,Apple,System Analyst,Mumbai,https://github.com/vikramroy29,https://linkedin.com/in/vikramroy29
+A030,Sneha Khan,2015,Data analytics for improving placements,Amazon,DevOps Engineer,Hyderabad,https://github.com/snehakhan30,https://linkedin.com/in/snehakhan30
+A031,Ishita Khan,2012,Data analytics for improving placements,Apple,Web Developer,Toronto,https://github.com/ishitakhan31,https://linkedin.com/in/ishitakhan31
+A032,Divya Reddy,2015,Mobile app for student mental health support,Adobe,Data Scientist,Hyderabad,https://github.com/divyareddy32,https://linkedin.com/in/divyareddy32
+A033,Kavya Reddy,2014,Green energy solutions for campuses,Amazon,AI Engineer,Mumbai,https://github.com/kavyareddy33,https://linkedin.com/in/kavyareddy33
+A034,Nisha Sharma,2012,Data analytics for improving placements,Microsoft,DevOps Engineer,New York,https://github.com/nishasharma34,https://linkedin.com/in/nishasharma34
+A035,Kavya Pillai,2013,AI-driven personalized learning platform,TCS,Software Engineer,San Francisco,https://github.com/kavyapillai35,https://linkedin.com/in/kavyapillai35
+A036,Vikram Mehta,2012,AR/VR-based virtual classrooms,Microsoft,Researcher,New York,https://github.com/vikrammehta36,https://linkedin.com/in/vikrammehta36
+A037,Rahul Sharma,2017,Blockchain-based certificate verification,Google,Consultant,Hyderabad,https://github.com/rahulsharma37,https://linkedin.com/in/rahulsharma37
+A038,Divya Iyer,2015,IoT smart campus system,Meta,Researcher,Toronto,https://github.com/divyaiyer38,https://linkedin.com/in/divyaiyer38
+A039,Neha Verma,2019,AR/VR-based virtual classrooms,Apple,AI Engineer,Toronto,https://github.com/nehaverma39,https://linkedin.com/in/nehaverma39
+A040,Ananya Verma,2013,Blockchain-based certificate verification,Amazon,System Analyst,London,https://github.com/ananyaverma40,https://linkedin.com/in/ananyaverma40
+A041,Meera Nair,2014,Mobile app for student mental health support,IBM,DevOps Engineer,San Francisco,https://github.com/meeranair41,https://linkedin.com/in/meeranair41
+A042,Ananya Pillai,2018,Online alumni mentoring network,Wipro,Software Engineer,Bangalore,https://github.com/ananyapillai42,https://linkedin.com/in/ananyapillai42
+A043,Ishita Joshi,2010,AI-driven personalized learning platform,Google,Web Developer,San Francisco,https://github.com/ishitajoshi43,https://linkedin.com/in/ishitajoshi43
+A044,Siddharth Bose,2012,IoT smart campus system,Google,Web Developer,Bangalore,https://github.com/siddharthbose44,https://linkedin.com/in/siddharthbose44
+A045,Aarav Malik,2020,Blockchain-based certificate verification,Apple,System Analyst,Toronto,https://github.com/aaravmalik45,https://linkedin.com/in/aaravmalik45
+A046,Divya Khan,2022,Crowdfunding platform for student projects,TCS,Software Engineer,London,https://github.com/divyakhan46,https://linkedin.com/in/divyakhan46
+A047,Vikram Rastogi,2019,Data analytics for improving placements,Adobe,AI Engineer,Hyderabad,https://github.com/vikramrastogi47,https://linkedin.com/in/vikramrastogi47
+A048,Sneha Chopra,2012,Green energy solutions for campuses,TCS,System Analyst,Chennai,https://github.com/snehachopra48,https://linkedin.com/in/snehachopra48
+A049,Siddharth Iyer,2015,Mobile app for student mental health support,IBM,Web Developer,Pune,https://github.com/siddharthiyer49,https://linkedin.com/in/siddharthiyer49
+A050,Meera Gupta,2020,IoT smart campus system,TCS,Project Manager,Mumbai,https://github.com/meeragupta50,https://linkedin.com/in/meeragupta50
