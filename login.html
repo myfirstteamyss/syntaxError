@@ -284,45 +284,41 @@
 
     <div class="container" id="login-container">
         <!-- Admin Login Panel -->
-        <div class="panel admin-panel">
-            <div class="logo">
-                <img src="https://i.imgur.com/k9b8rXg.png" alt="Admin Login">
+           <div class="panel admin-panel">
+        <h2>Institutional Access</h2>
+        <form>
+            <div class="form-group">
+                <label for="adminId">Admin ID</label>
+                <input type="text" id="adminId" name="adminId" placeholder="Enter your Admin ID" required>
             </div>
-            <h2>Institutional Access</h2>
-            <form>
-                <div class="form-group">
-                    <label for="adminId">Admin ID</label>
-                    <input type="text" id="adminId" name="adminId" placeholder="Enter your Admin ID" required>
-                </div>
-                <div class="form-group">
-                    <label for="adminPassword">Password</label>
-                    <input type="password" id="adminPassword" name="adminPassword" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="btn btn-admin">ADMIN LOGIN</button>
-                <a href="#" class="link">Forget Admin ID or Password?</a>
-            </form>
-        </div>
+            <div class="form-group">
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" name="adminPassword" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-admin">ADMIN LOGIN</button>
+            <a href="#" class="link">Forget Admin ID or Password?</a>
+        </form>
+    </div>
 
         <!-- Alumni Login Panel -->
-        <div class="panel alumni-panel">
-            <div class="logo">
-                <img src="https://i.imgur.com/k9b8rXg.png" alt="Alumni Login">
+            <div class="panel alumni-panel">
+        <h2>Alumni Network</h2>
+        <form>
+            <div class="form-group">
+                <label for="alumniEmail">Email Address</label>
+                <input type="email" id="alumniEmail" name="alumniEmail" placeholder="Enter your email" required>
             </div>
-            <h2>Alumni Network</h2>
-            <form>
-                <div class="form-group">
-                    <label for="alumniEmail">Email Address</label>
-                    <input type="email" id="alumniEmail" name="alumniEmail" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="alumniPassword">Password</label>
-                    <input type="password" id="alumniPassword" name="alumniPassword" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="btn btn-alumni">ALUMNI LOGIN</button>
-                <a href="#" class="link">Forgot Password?</a>
-                <p style="margin-top: 30px;">New Alumni? <a href="#" class="link register-link" onclick="showRegistrationForm()">Register Here</a></p>
-            </form>
-        </div>
+            <div class="form-group">
+                <label for="alumniPassword">Password</label>
+                <input type="password" id="alumniPassword" name="alumniPassword" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-alumni">ALUMNI LOGIN</button>
+            <a href="#" class="link">Forgot Password?</a>
+            <p style="margin-top: 30px;">New Alumni? 
+                <a href="#" class="link register-link" onclick="showRegistrationForm()">Register Here</a>
+            </p>
+        </form>
+    </div>
     </div>
 
     <!-- Registration Form (Initially Hidden) -->
@@ -367,4 +363,5 @@
     </script>
 
 </body>
+
 </html>
