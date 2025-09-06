@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Student Dashboard with Alumni Visualizations</title>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+/* Base */
+* { box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3c40 0%, #1a374d 100%);
+  margin: 0; color: #ffffff;
+}
+header {
+  background-color: rgba(26,49,55,0.92);
+  color: #ffffff;
+  padding: 15px 30px; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+header h1 { margin:0; font-size:1.8rem; font-weight:700; }
+header p { margin:4px 0 0; font-size:1rem; color:#a0f0e0; }
+
+.intro {
+  max-width:1100px; margin:20px auto; padding:18px 24px;
+  background: rgba(209,242,235,0.06); border-radius:12px;
+  box-shadow: 0 6px 14px rgba(30,60,64,0.4);
+  font-size:1.05rem; line-height:1.6;
+}
+
+.container { max-width:1100px; margin:18px auto 40px; padding:0 12px; }
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 320px;
+  gap: 12px;
+  border-radius: 8px; overflow: hidden;
+  margin-top: 40px; /* Added margin-top for spacing from internship */
+}
+.chart-tile {
+  background: #0f2b2b; padding: 12px; border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.chart-title {
+  font-weight:700; margin: 0 0 8px 0; font-size:1rem;
+}
+.chart-description {
+  font-size: 0.85rem;
+  margin: 0 0 12px 0;
+  color: #b0ded8;
+}
+.chart-canvas { width:100% !important; height: 280px !important; flex-grow: 1; }
+
+.section {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px; padding: 18px; margin-top: 18px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.controls {
+  display:flex; gap:10px; align-items:center; margin-bottom:12px; flex-wrap:wrap;
+}
+.controls input, .controls select {
+  padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);
+  background:#164949; color:#ffffff; font-weight:500;
+}
+
+table { width:100%; border-collapse: collapse; margin-top:8px; }
+th, td {
+  padding:10px; text-align:left; font-size:0.95rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: #ffffff;
+}
+th { background: rgba(20,90,85,0.95); font-weight:700; color:#ffffff; position: sticky; top:0; }
+tbody tr:hover td { background: rgba(26,188,156,0.2); }
+
+a.profile-link { color:#1abc9c; text-decoration:none; font-weight:600; }
+a.profile-link:hover { text-decoration:underline; }
+
+footer {
+  max-width:1100px; margin:26px auto 40px; padding:14px 18px;
+  background: rgba(26,49,55,0.85); border-radius: 12px; text-align:center;
+}
+
+/* Added bottom margin to internship table */
+.internship-table {
+  margin-bottom: 40px;
+}
+
+/* Responsive */
+@media (max-width:900px) {
+  .charts-grid { grid-template-columns: 1fr; grid-auto-rows: 360px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Student Dashboard with Alumni Visualizations</h1>
+  <p>Explore mentorship, internships, and alumni insights</p>
+</header>
+
+<div class="intro">
+  Welcome to your Student Dashboard! Explore valuable mentorship and internships, and dive into alumni data insights and trends.
+</div>
+
+<div class="container">
+  <!-- Mentorship Opportunities -->
+  <section aria-label="Mentorship Opportunities">
+    <h2>Mentorship Opportunities</h2>
+    <table>
+      <thead>
+        <tr><th>Alumni Name</th><th>Profession</th><th>Expertise</th><th>Connect</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>John Doe</td><td>Software Engineer</td><td>Web Development</td><td><a href="#">Connect</a></td></tr>
+        <tr><td>Lisa Ray</td><td>Data Scientist</td><td>Machine Learning</td><td><a href="#">Connect</a></td></tr>
+        <tr><td>Michael Chen</td><td>Product Manager</td><td>Agile & Scrum</td><td><a href="#">Connect</a></td></tr>
+        <tr><td>Jessica Lee</td><td>UX Designer</td><td>User Research & UI Design</td><td><a href="#">Connect</a></td></tr>
+        <tr><td>David Park</td><td>Cybersecurity Analyst</td><td>Network Security</td><td><a href="#">Connect</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Internship Opportunities -->
+  <section aria-label="Internship Opportunities">
+    <h2>Internship Opportunities</h2>
+    <table class="internship-table">
+      <thead>
+        <tr><th>Company</th><th>Role</th><th>Location</th><th>Apply</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tech Corp</td><td>Software Engineer Intern</td><td>New York</td><td><a href="#">Apply</a></td></tr>
+        <tr><td>InnovateX</td><td>Data Analyst Intern</td><td>San Francisco</td><td><a href="#">Apply</a></td></tr>
+        <tr><td>BlueWave</td><td>Marketing Intern</td><td>Chicago</td><td><a href="#">Apply</a></td></tr>
+        <tr><td>NextGen AI</td><td>Research Intern</td><td>Boston</td><td><a href="#">Apply</a></td></tr>
+        <tr><td>GreenTech</td><td>Environmental Intern</td><td>Seattle</td><td><a href="#">Apply</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Alumni Charts Grid -->
+  <div class="charts-grid" aria-label="Alumni Visualizations">
+    <div class="chart-tile">
+      <div class="chart-title">Alumni Distribution by Pass-out Year</div>
+      <div class="chart-description">Shows the proportion of alumni graduating in different years.</div>
+      <canvas id="chartYear" class="chart-canvas"></canvas>
+    </div>
+    <div class="chart-tile">
+      <div class="chart-title">Top Alumni Employers</div>
+      <div class="chart-description">Number of alumni working at leading companies.</div>
+      <canvas id="chartCompany" class="chart-canvas"></canvas>
+    </div>
+    <div class="chart-tile">
+      <div class="chart-title">Alumni Locations</div>
+      <div class="chart-description">Geographical distribution of alumni by city or region.</div>
+      <canvas id="chartLocation" class="chart-canvas"></canvas>
+    </div>
+    <!-- Career Progression and Innovation Trend charts removed -->
+    <div class="chart-tile">
+      <div class="chart-title">Alumni Profiles on GitHub vs LinkedIn</div>
+      <div class="chart-description">Comparison of alumni presence on popular professional and coding platforms.</div>
+      <canvas id="chartProfiles" class="chart-canvas"></canvas>
+    </div>
+  </div>
+
+  <!-- Alumni Directory -->
+  <section class="section" aria-label="Alumni Directory">
+    <h2>Alumni Directory</h2>
+    <div class="controls">
+      <input id="searchBox" placeholder="Search by name, company, job, location..." aria-label="Search alumni" />
+      <select id="filterYear" aria-label="Filter by year">
+        <option value="">All Years</option>
+      </select>
+      <select id="filterCompany" aria-label="Filter by company">
+        <option value="">All Companies</option>
+      </select>
+      <button id="resetFilters" style="background:#1abc9c; color:#042826; padding:8px 12px; border-radius:8px; border:none;">
+        Reset
+      </button>
+    </div>
+    <div style="overflow:auto; max-height:420px;">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Year</th><th>Job</th><th>Company</th><th>Location</th><th>Profiles</th></tr>
+        </thead>
+        <tbody id="directoryBody"></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<footer>
+  © 2025 University Alumni Portal
+</footer>
+
+<script>
+// Embedded alumni data (first 20 rows as sample)
+const alumniData = [
+  {"Alumni_ID":"A001","Name":"Karan Patel","Passout_Year":"2022","Innovation_Thoughts":"AR/VR-based virtual classrooms","Company":"Google","Job_Title":"Software Engineer","Location":"Delhi","GitHub_Profile":"https://github.com/karanpatel1","LinkedIn_Profile":"https://linkedin.com/in/karanpatel1"},
+  {"Alumni_ID":"A002","Name":"Neha Desai","Passout_Year":"2019","Innovation_Thoughts":"AI-driven personalized learning platform","Company":"IBM","Job_Title":"DevOps Engineer","Location":"San Francisco","GitHub_Profile":"https://github.com/nehadesai2","LinkedIn_Profile":"https://linkedin.com/in/nehadesai2"},
+  {"Alumni_ID":"A003","Name":"Ananya Reddy","Passout_Year":"2011","Innovation_Thoughts":"Green energy solutions for campuses","Company":"Google","Job_Title":"Software Engineer","Location":"Hyderabad","GitHub_Profile":"https://github.com/ananyareddy3","LinkedIn_Profile":"https://linkedin.com/in/ananyareddy3"},
+  {"Alumni_ID":"A004","Name":"Priya Khan","Passout_Year":"2012","Innovation_Thoughts":"Blockchain-based certificate verification","Company":"IBM","Job_Title":"Project Manager","Location":"New York","GitHub_Profile":"https://github.com/priyakhan4","LinkedIn_Profile":"https://linkedin.com/in/priyakhan4"},
+  {"Alumni_ID":"A005","Name":"Varun Nair","Passout_Year":"2015","Innovation_Thoughts":"IoT smart campus system","Company":"TCS","Job_Title":"Researcher","Location":"London","GitHub_Profile":"https://github.com/varunnair5","LinkedIn_Profile":"https://linkedin.com/in/varunnair5"},
+  {"Alumni_ID":"A006","Name":"Neha Das","Passout_Year":"2015","Innovation_Thoughts":"Online alumni mentoring network","Company":"Apple","Job_Title":"Software Engineer","Location":"Bangalore","GitHub_Profile":"https://github.com/nehadas6","LinkedIn_Profile":"https://linkedin.com/in/nehadas6"},
+  {"Alumni_ID":"A007","Name":"Sneha Verma","Passout_Year":"2014","Innovation_Thoughts":"Online alumni mentoring network","Company":"Meta","Job_Title":"Product Manager","Location":"Pune","GitHub_Profile":"https://github.com/snehaverma7","LinkedIn_Profile":"https://linkedin.com/in/snehaverma7"},
+  {"Alumni_ID":"A008","Name":"Neha Rastogi","Passout_Year":"2016","Innovation_Thoughts":"AI-driven personalized learning platform","Company":"Adobe","Job_Title":"System Analyst","Location":"Pune","GitHub_Profile":"https://github.com/neharastogi8","LinkedIn_Profile":"https://linkedin.com/in/neharastogi8"},
+  {"Alumni_ID":"A009","Name":"Aarav Joshi","Passout_Year":"2021","Innovation_Thoughts":"Online alumni mentoring network","Company":"Microsoft","Job_Title":"Web Developer","Location":"Bangalore","GitHub_Profile":"https://github.com/aaravjoshi9","LinkedIn_Profile":"https://linkedin.com/in/aaravjoshi9"},
+  {"Alumni_ID":"A010","Name":"Rohan Mehta","Passout_Year":"2012","Innovation_Thoughts":"Green energy solutions for campuses","Company":"Google","Job_Title":"Consultant","Location":"Hyderabad","GitHub_Profile":"https://github.com/rohanmehta10","LinkedIn_Profile":"https://linkedin.com/in/rohanmehta10"}
+];
+
+// Utility functions
+function groupCounts(arr, key){
+  const map={};
+  arr.forEach(r=>{
+    const v=(r[key]||'').toString().trim();
+    if(!v) return;
+    map[v]=(map[v]||0)+1;
+  });
+  return map;
+}
+function sortEntriesByValue(obj, desc=true){
+  return Object.entries(obj).sort((a,b)=>desc?b[1]-a[1]:a[1]-b[1]);
+}
+
+// Build dashboard
+buildDashboard(alumniData);
+
+function buildDashboard(data){
+  const yearCounts=groupCounts(data,"Passout_Year");
+  const companyCounts=groupCounts(data,"Company");
+  const locationCounts=groupCounts(data,"Location");
+
+  let githubCount=0, linkedinCount=0, bothCount=0;
+  data.forEach(r=>{
+    const g=!!r.GitHub_Profile, l=!!r.LinkedIn_Profile;
+    if(g && l) bothCount++;
+    else if(g) githubCount++;
+    else if(l) linkedinCount++;
+  });
+
+  const palette=['#4e79a7','#f28e2b','#e15759','#76b7b2','#59a14f','#edc948','#af7aa1','#ff9da7','#9c755f'];
+
+  const chartOptions={
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{
+      legend:{labels:{color:'#ffffff'}},
+      tooltip:{titleColor:'#ffffff',bodyColor:'#ffffff'}
+    },
+    scales:{
+      x:{ticks:{color:'#ffffff'}},
+      y:{beginAtZero:true,ticks:{color:'#ffffff'}}
+    }
+  };
+
+  new Chart(document.getElementById('chartYear'), {
+    type: 'pie',
+    data: {
+      labels: Object.keys(yearCounts),
+      datasets: [{
+        data: Object.values(yearCounts),
+        backgroundColor: palette
+      }]
+    },
+    options: chartOptions
+  });
+
+  new Chart(document.getElementById('chartCompany'), {
+    type: 'bar',
+    data: {
+      labels: sortEntriesByValue(companyCounts).slice(0,10).map(e => e[0]),
+      datasets: [{
+        label: 'Alumni',
+        data: sortEntriesByValue(companyCounts).slice(0,10).map(e => e[1]),
+        backgroundColor: palette
+      }]
+    },
+    options: chartOptions
+  });
+
+  new Chart(document.getElementById('chartLocation'), {
+    type: 'bar',
+    data: {
+      labels: sortEntriesByValue(locationCounts).slice(0,10).map(e => e[0]),
+      datasets: [{
+        label: 'Alumni',
+        data: sortEntriesByValue(locationCounts).slice(0,10).map(e => e[1]),
+        backgroundColor: palette
+      }]
+    },
+    options: chartOptions
+  });
+
+  new Chart(document.getElementById('chartProfiles'), {
+    type: 'doughnut',
+    data: {
+      labels: ['GitHub only', 'LinkedIn only', 'Both'],
+      datasets: [{
+        data: [githubCount, linkedinCount, bothCount],
+        backgroundColor: ['#f28e2b', '#4e79a7', '#59a14f']
+      }]
+    },
+    options: chartOptions
+  });
+
+  // Directory rendering
+  const tbody=document.getElementById('directoryBody'),
+    searchBox=document.getElementById('searchBox'),
+    filterYear=document.getElementById('filterYear'),
+    filterCompany=document.getElementById('filterCompany'),
+    resetBtn=document.getElementById('resetFilters');
+
+  Object.keys(yearCounts).sort().forEach(y=>{
+    const o=document.createElement('option');
+    o.value=y;
+    o.textContent=y;
+    filterYear.appendChild(o);
+  });
+
+  sortEntriesByValue(companyCounts).map(e=>e[0]).forEach(c=>{
+    const o=document.createElement('option');
+    o.value=c;
+    o.textContent=c;
+    filterCompany.appendChild(o);
+  });
+
+  function renderRows(){
+    const q=searchBox.value.toLowerCase(),
+      fy=filterYear.value,
+      fc=filterCompany.value;
+    tbody.innerHTML='';
+    data.filter(r=> (!fy || r.Passout_Year === fy) && (!fc || r.Company === fc) &&
+      [r.Name,r.Company,r.Job_Title,r.Location].join(' ').toLowerCase().includes(q) )
+      .forEach(r=>{
+        const tr=document.createElement('tr');
+        tr.innerHTML = `<td>${r.Name}</td><td>${r.Passout_Year}</td><td>${r.Job_Title}</td><td>${r.Company}</td><td>${r.Location}</td>
+          <td>${r.GitHub_Profile?`<a class="profile-link" href="${r.GitHub_Profile}" target="_blank">GitHub</a>`:''} ${r.LinkedIn_Profile?`<a class="profile-link" href="${r.LinkedIn_Profile}" target="_blank">LinkedIn</a>`:''}</td>`;
+        tbody.appendChild(tr);
+      });
+  }
+  renderRows();
+
+  searchBox.addEventListener('input', renderRows);
+  filterYear.addEventListener('change', renderRows);
+  filterCompany.addEventListener('change', renderRows);
+  resetBtn.addEventListener('click', () => {
+    searchBox.value = '';
+    filterYear.value = '';
+    filterCompany.value = '';
+    renderRows();
+  });
+}
+</script>
+
+</body>
+</html>
