@@ -143,11 +143,6 @@
       border-top: 1px solid #1e4e57;
       margin-top: 2rem;
     }
-
-    .highlight-link {
-      color: #62f3d4;
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
@@ -157,7 +152,6 @@
       <li><a href="#" class="active">Home</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
-      <li><a href="#" class="login-link">Login</a></li>
     </ul>
   </nav>
 
@@ -242,30 +236,11 @@
           <label for="donations">Donations</label>
           <input id="donations" name="donations" type="number" placeholder="Enter amount in INR" />
         </div>
-
-        <!-- Save & Reset buttons -->
-        <div style="display:flex; justify-content:center; gap:1rem; margin-top:1rem;">
-          <button type="submit" class="btn">Save</button>
-          <button type="reset" class="btn" style="background:#555;">Reset</button>
+        
+        <div style="display:flex; justify-content:center; margin-top:1rem;">
+          <button type="submit" class="btn">Register</button>
         </div>
       </form>
-    </div>
-
-    <div id="preview" class="card" hidden>
-      <h2>Saved Alumni Details</h2>
-      <p><strong>Name:</strong> <span id="pName"></span></p>
-      <p><strong>Passout Year:</strong> <span id="pPassout"></span></p>
-      <p><strong>Companies:</strong> <span id="pCompanies"></span></p>
-      <p><strong>Job Title:</strong> <span id="pJob"></span></p>
-      <p><strong>Location:</strong> <span id="pLocation"></span></p>
-      <p><strong>Gender:</strong> <span id="pGender"></span></p>
-      <p><strong>Degree:</strong> <span id="pDegree"></span></p>
-      <p><strong>Major Course:</strong> <span id="pMajor"></span></p>
-      <p><strong>Experience:</strong> <span id="pExp"></span></p>
-      <p><strong>LinkedIn:</strong> <span id="pLinkedin"></span></p>
-      <p><strong>GitHub:</strong> <span id="pGithub"></span></p>
-      <p><strong>Mentorship:</strong> <span id="pMentorship"></span></p>
-      <p><strong>Donations:</strong> <span id="pDonations"></span></p>
     </div>
   </main>
 
@@ -275,47 +250,16 @@
 
   <script>
     const form = document.getElementById('alumniForm');
-    const preview = document.getElementById('preview');
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(form).entries());
 
-      document.getElementById('pName').textContent = data.name;
-      document.getElementById('pPassout').textContent = data.passoutYear;
-      document.getElementById('pCompanies').textContent = data.companies || '-';
-      document.getElementById('pJob').textContent = data.jobTitle;
-      document.getElementById('pLocation').textContent = data.location;
-      document.getElementById('pGender').textContent = data.gender;
-      document.getElementById('pDegree').textContent = data.degree;
-      document.getElementById('pMajor').textContent = data.major;
-      document.getElementById('pExp').textContent = data.experience || '0';
-      document.getElementById('pLinkedin').innerHTML =
-        `<a class="highlight-link" href="${data.linkedin}" target="_blank">${data.linkedin}</a>`;
-      document.getElementById('pGithub').innerHTML =
-        data.github ? `<a class="highlight-link" href="${data.github}" target="_blank">${data.github}</a>` : '-';
-      document.getElementById('pMentorship').textContent = data.mentorship;
-      document.getElementById('pDonations').textContent = data.donations || '-';
-
-      preview.hidden = false;
+      // Save data to localStorage
       localStorage.setItem('alumniData', JSON.stringify(data));
-    });
 
-    // Reset button clears preview as well
-    form.addEventListener('reset', () => {
-      preview.hidden = true;
-      localStorage.removeItem('alumniData');
-    });
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const saved = localStorage.getItem('alumniData');
-      if (saved) {
-        const data = JSON.parse(saved);
-        Object.entries(data).forEach(([k,v]) => {
-          if (form.elements[k]) form.elements[k].value = v;
-        });
-        form.dispatchEvent(new Event('submit', {cancelable: true}));
-      }
+      // Redirect to Alumni Dashboard (use "#" as placeholder until ready)
+      window.location.href = "alumni_dash.html"; 
     });
   </script>
 </body>

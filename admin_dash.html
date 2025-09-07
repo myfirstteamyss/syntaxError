@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin Dashboard - Alumni Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary-bg: #0f2b33;
+    --card-bg: #1b3e47;
+    --accent: #62f3d4;
+    --accent-hover: #3dd2b2;
+    --text-color: #f0f0f0;
+    --muted-text: #b0c4c8;
+    --border-color: #2a5a63;
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    --border-radius: 12px;
+    --font-sans: 'Poppins', sans-serif;
+    --transition-fast: 0.25s ease-out;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+    background: var(--primary-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+
+  /* Navbar */
+  nav {
+    background: #143d46;
+    box-shadow: var(--shadow);
+  }
+  nav ul {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 14px 0;
+    list-style: none;
+  }
+  nav ul li {
+    margin: 0 15px;
+  }
+  nav ul li a {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color var(--transition-fast);
+  }
+  nav ul li a:hover,
+  nav ul li a:focus {
+    background: rgba(98, 243, 212, 0.15);
+  }
+
+  header {
+    background: linear-gradient(135deg, #143d46, #1f5c63);
+    color: var(--accent);
+    padding: 60px 20px 25px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    margin-bottom: 0;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2.6rem;
+    letter-spacing: 1.2px;
+  }
+
+  main {
+    max-width: 100vw;
+    margin: 20px auto 40px;
+    padding: 0 20px 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  section {
+    background: var(--card-bg);
+    padding: 30px 35px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: box-shadow var(--transition-fast);
+  }
+  section:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  }
+  h2 {
+    margin-top: 0;
+    color: var(--accent);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 22px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--text-color);
+    background: #15343b;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 8px 2px rgba(98, 243, 212, 0.3);
+  }
+
+  button {
+    background: var(--accent);
+    color: #0f2b33;
+    border: none;
+    font-weight: 600;
+    padding: 14px 30px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    align-self: flex-start;
+    transition: background-color var(--transition-fast), transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  }
+  button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-3px);
+  }
+
+  .table-container {
+    overflow-x: auto;
+    flex-grow: 1;
+    margin-top: 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    min-width: 320px;
+    font-size: 0.95rem;
+  }
+  th, td {
+    padding: 14px 18px;
+    text-align: left;
+    vertical-align: middle;
+    color: var(--text-color);
+  }
+  th {
+    background: #143d46;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  tbody tr {
+    background: #15343b;
+    transition: background-color 0.2s ease;
+  }
+  tbody tr:hover {
+    background-color: #1f5c63;
+  }
+
+  .actions-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  .actions-buttons button.edit-btn {
+    background-color: #00b894;
+  }
+  .actions-buttons button.delete-btn {
+    background-color: #d63031;
+    color: white;
+  }
+
+  #report-output {
+    background: #15343b;
+    color: var(--accent);
+    padding: 18px 22px;
+    border-radius: var(--border-radius);
+    height: 240px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-y: auto;
+    white-space: pre-wrap;
+  }
+  #comm-status {
+    margin-top: 18px;
+    padding: 14px 18px;
+    border-radius: var(--border-radius);
+    background-color: #143d46;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Admin Dashboard - Alumni Management</h1>
+</header>
+<nav aria-label="Primary">
+  <ul>
+    <li><a href="#alumni-section">Alumni</a></li>
+    <li><a href="#events-section">Events</a></li>
+    <li><a href="#communications-section">Communications</a></li>
+    <li><a href="#donations-section">Donations</a></li>
+    <li><a href="#reports-section">Reports</a></li>
+    <li><a href="index.html">Back</a></li>
+  </ul>
+</nav>
+<main>
+  <!-- Alumni Section -->
+  <section id="alumni-section">
+    <h2>View/Search Alumni</h2>
+    <input type="text" id="alumni-search" class="filter-input" placeholder="Search alumni..." />
+    <div class="table-container">
+      <table id="alumni-table">
+        <thead><tr><th>Name</th><th>Email</th><th>Career</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events-section">
+    <h2>Manage Events</h2>
+    <form id="event-form">
+      <input type="hidden" id="event-id" />
+      <input type="text" id="event-title" placeholder="Event Title" required />
+      <input type="text" id="event-date" placeholder="Date (YYYY-MM-DD)" required />
+      <textarea id="event-desc" placeholder="Description" rows="3"></textarea>
+      <button type="submit">Create/Update Event</button>
+    </form>
+    <div class="table-container">
+      <table id="events-table">
+        <thead><tr><th>Title</th><th>Date</th><th>Description</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Communications Section -->
+  <section id="communications-section">
+    <h2>Send Communications</h2>
+    <form id="comm-form">
+      <input type="text" id="comm-subject" placeholder="Subject" required />
+      <textarea id="comm-message" placeholder="Message" rows="5" required></textarea>
+      <button type="submit">Send Announcement</button>
+    </form>
+    <div id="comm-status" style="display:none;"></div>
+  </section>
+
+  <!-- Donations Section -->
+  <section id="donations-section">
+    <h2>Donations & Fundraising</h2>
+    <div class="table-container">
+      <table id="donations-table">
+        <thead><tr><th>Alumni Name</th><th>Amount Donated ($)</th></tr></thead>
+        <tbody>
+          <tr><td>Jane Doe</td><td>25000</td></tr>
+          <tr><td>Michael Brown</td><td>10000</td></tr>
+          <tr><td>Sophia Lee</td><td>50000</td></tr>
+          <tr><td>Chris Evans</td><td>75000</td></tr>
+          <tr><td>Priya Patel</td><td>32000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Reports Section -->
+  <section id="reports-section">
+    <h2>Reports</h2>
+    <button id="generate-report-btn">Generate Alumni Engagement Report</button>
+    <pre id="report-output"></pre>
+  </section>
+</main>
+
+<script>
+  let alumniData = [
+    { name: 'Alice Johnson', email: 'alice@example.com', career: 'Software Engineer' },
+    { name: 'Bob Smith', email: 'bob@example.com', career: 'Marketing Manager' },
+    { name: 'Carol Lee', email: 'carol@example.com', career: 'Data Scientist' }
+  ];
+  let eventsData = [
+    { title: 'Annual Meetup', date: '2023-10-20', description: 'Networking event for all alumni.' },
+    { title: 'Tech Talk', date: '2023-11-15', description: 'Guest speakers from tech industry.' }
+  ];
+  function renderAlumniTable(filter = '') {
+    const tbody = document.querySelector('#alumni-table tbody');
+    tbody.innerHTML = '';
+    const filtered = alumniData.filter(a =>
+      a.name.toLowerCase().includes(filter) ||
+      a.email.toLowerCase().includes(filter) ||
+      a.career.toLowerCase().includes(filter)
+    );
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;color:${'#ccc'}">No alumni found.</td></tr>`;
+      return;
+    }
+    filtered.forEach(a => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${a.name}</td><td><a href="mailto:${a.email}" style="color:${'#62f3d4'}">${a.email}</a></td><td>${a.career}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+  document.getElementById('alumni-search').addEventListener('input', e => renderAlumniTable(e.target.value.toLowerCase()));
+  renderAlumniTable();
+
+  function renderEventsTable() {
+    const tbody = document.querySelector('#events-table tbody');
+    tbody.innerHTML = '';
+    if (eventsData.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:#ccc">No events scheduled.</td></tr>`;
+      return;
+    }
+    eventsData.forEach((event, idx) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${event.title}</td>
+        <td>${event.date}</td>
+        <td>${event.description}</td>
+        <td class="actions-buttons">
+          <button class="edit-btn" onclick="editEvent(${idx})">Edit</button>
+          <button class="delete-btn" onclick="deleteEvent(${idx})">Delete</button>
+        </td>`;
+      tbody.appendChild(tr);
+    });
+  }
+  renderEventsTable();
+
+  document.getElementById('event-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const id = document.getElementById('event-id').value;
+    const title = document.getElementById('event-title').value.trim();
+    const date = document.getElementById('event-date').value.trim();
+    const desc = document.getElementById('event-desc').value.trim();
+    if (!title || !date) return;
+    if (id === '') eventsData.push({ title, date, description: desc });
+    else eventsData[id] = { title, date, description: desc };
+    document.getElementById('event-id').value = '';
+    e.target.reset();
+    renderEventsTable();
+  });
+  function editEvent(idx) {
+    const event = eventsData[idx];
+    document.getElementById('event-id').value = idx;
+    document.getElementById('event-title').value = event.title;
+    document.getElementById('event-date').value = event.date;
+    document.getElementById('event-desc').value = event.description;
+    document.getElementById('event-form').scrollIntoView({ behavior: 'smooth' });
+  }
+  function deleteEvent(idx) {
+    if (confirm('Delete this event?')) {
+      eventsData.splice(idx, 1);
+      renderEventsTable();
+    }
+  }
+
+  document.getElementById('comm-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const subject = document.getElementById('comm-subject').value.trim();
+    const message = document.getElementById('comm-message').value.trim();
+    const commStatus = document.getElementById('comm-status');
+    commStatus.textContent = `Announcement sent: "${subject}" | Preview: "${message.substring(0, 50)}..."`;
+    commStatus.style.display = 'block';
+    setTimeout(() => commStatus.style.display = 'none', 6000);
+    e.target.reset();
+  });
+
+  document.getElementById('generate-report-btn').addEventListener('click', () => {
+    const totalAlumni = alumniData.length;
+    const careers = {};
+    alumniData.forEach(a => careers[a.career] = (careers[a.career] || 0) + 1);
+    let careerSummary = Object.entries(careers).map(([c,v]) => `${c}: ${v} alumni`).join('\n');
+    const report = `--- Alumni Engagement Report ---\n\nDate: ${new Date().toLocaleString()}\n\nTotal Alumni: ${totalAlumni}\nCareer Breakdown:\n${careerSummary}\n\nTotal Events: ${eventsData.length}`;
+    document.getElementById('report-output').textContent = report;
+  });
+</script>
+</body>
+</html>

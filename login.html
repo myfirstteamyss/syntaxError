@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #004080; /* Dark Blue */
-            --secondary-color: #f0a020; /* Orange/Gold */
+            --primary-color: #004080;
+            --secondary-color: #f0a020;
             --background-light: #f4f7f6;
             --text-dark: #333;
             --text-light: #fff;
@@ -27,7 +27,7 @@
             min-height: 100vh;
             background-color: var(--background-light);
             color: var(--text-dark);
-            background-image: url('https://images.unsplash.com/photo-1541339907198-e0875661f4b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); /* Example background */
+            background-image: url('https://images.unsplash.com/photo-1541339907198-e0875661f4b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -40,7 +40,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1;
         }
 
@@ -73,36 +73,26 @@
             overflow: hidden;
         }
 
-        .admin-panel::before {
+        .admin-panel::before,
+        .admin-panel::after {
             content: '';
             position: absolute;
-            top: -50px;
-            left: -50px;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.05);
-            transform: rotate(45deg);
-        }
-         .admin-panel::after {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            right: -50px;
             width: 200px;
             height: 200px;
             background: rgba(255, 255, 255, 0.05);
             transform: rotate(45deg);
         }
 
-        .alumni-panel {
-            background-color: var(--text-light);
-        }
+        .admin-panel::before { top: -50px; left: -50px; }
+        .admin-panel::after { bottom: -50px; right: -50px; }
+
+        .alumni-panel { background-color: var(--text-light); }
 
         h2 {
             margin-bottom: 25px;
             font-weight: 700;
             font-size: 1.8em;
-            color: inherit; /* Ensures heading color matches panel text color */
+            color: inherit;
         }
 
         .form-group {
@@ -131,15 +121,16 @@
             background-color: rgba(255, 255, 255, 0.9);
             color: var(--text-dark);
         }
+
         .admin-panel .form-group input {
             background-color: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 255, 255, 0.3);
             color: var(--text-light);
         }
+
         .admin-panel .form-group input::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
-
 
         .form-group input:focus {
             outline: none;
@@ -160,25 +151,11 @@
             margin-top: 10px;
         }
 
-        .btn-admin {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-        }
+        .btn-admin { background-color: var(--secondary-color); color: var(--primary-color); }
+        .btn-admin:hover { background-color: #e6911a; box-shadow: 0 4px 15px var(--shadow-light); }
 
-        .btn-admin:hover {
-            background-color: #e6911a;
-            box-shadow: 0 4px 15px var(--shadow-light);
-        }
-
-        .btn-alumni {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-        }
-
-        .btn-alumni:hover {
-            background-color: #003366;
-            box-shadow: 0 4px 15px var(--shadow-light);
-        }
+        .btn-alumni { background-color: var(--primary-color); color: var(--text-light); }
+        .btn-alumni:hover { background-color: #003366; box-shadow: 0 4px 15px var(--shadow-light); }
 
         .link {
             display: block;
@@ -189,44 +166,16 @@
             transition: color 0.3s ease;
         }
 
-        .admin-panel .link {
-             color: rgba(255, 255, 255, 0.8);
-        }
+        .admin-panel .link { color: rgba(255, 255, 255, 0.8); }
 
-        .link:hover {
-            text-decoration: underline;
-            color: var(--secondary-color);
-        }
-         .admin-panel .link:hover {
-            color: var(--secondary-color);
-        }
+        .link:hover { text-decoration: underline; color: var(--secondary-color); }
 
+        .register-link { color: var(--primary-color); font-weight: 500; }
+        .register-link:hover { color: var(--secondary-color); }
 
-        .register-link {
-            color: var(--primary-color);
-            font-weight: 500;
-        }
-
-        .register-link:hover {
-            color: var(--secondary-color);
-        }
-
-        .logo {
-            margin-bottom: 30px;
-        }
-        .logo img {
-            max-width: 80px;
-            height: auto;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
-        }
-        .alumni-panel .logo img {
-             max-width: 60px;
-             filter: none;
-        }
-
-        /* Registration Form Specific Styles */
+        /* Registration Form */
         #register-form {
-            display: none; /* Hidden by default */
+            display: none;
             padding: 40px;
             background-color: var(--text-light);
             border-radius: 12px;
@@ -235,96 +184,70 @@
             max-width: 500px;
             z-index: 2;
         }
-        #register-form h2 {
-            color: var(--primary-color);
-        }
-        #register-form .form-group input {
-            border: 1px solid var(--primary-color);
-        }
+
+        #register-form h2 { color: var(--primary-color); }
+        #register-form .form-group input { border: 1px solid var(--primary-color); }
+
         #register-form .btn-register {
             background-color: var(--secondary-color);
             color: var(--primary-color);
         }
-        #register-form .btn-register:hover {
-             background-color: #e6911a;
-        }
+        #register-form .btn-register:hover { background-color: #e6911a; }
+
         #register-form .back-to-login {
             margin-top: 25px;
             font-size: 0.95em;
             color: var(--primary-color);
             cursor: pointer;
         }
-        #register-form .back-to-login:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                width: 95%;
-                min-height: auto;
-            }
-            .panel {
-                padding: 30px 20px;
-            }
-            h2 {
-                font-size: 1.6em;
-            }
-            .form-group input, .btn {
-                max-width: 100%;
-            }
-            .admin-panel::before, .admin-panel::after {
-                display: none; /* Hide decorative elements on small screens */
-            }
-        }
+        #register-form .back-to-login:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
     <div class="container" id="login-container">
         <!-- Admin Login Panel -->
-           <div class="panel admin-panel">
-        <h2>Institutional Access</h2>
-        <form>
-            <div class="form-group">
-                <label for="adminId">Admin ID</label>
-                <input type="text" id="adminId" name="adminId" placeholder="Enter your Admin ID" required>
-            </div>
-            <div class="form-group">
-                <label for="adminPassword">Password</label>
-                <input type="password" id="adminPassword" name="adminPassword" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="btn btn-admin">ADMIN LOGIN</button>
-            <a href="#" class="link">Forget Admin ID or Password?</a>
-        </form>
-    </div>
+        <div class="panel admin-panel">
+            <h2>Institutional Access</h2>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="adminId">Admin ID</label>
+                    <input type="text" id="adminId" name="adminId" placeholder="Enter your Admin ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" name="adminPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-admin">ADMIN LOGIN</button>
+                <a href="#" class="link">Forget Admin ID or Password?</a>
+            </form>
+        </div>
 
         <!-- Alumni Login Panel -->
-            <div class="panel alumni-panel">
-        <h2>Alumni Network</h2>
-        <form>
-            <div class="form-group">
-                <label for="alumniEmail">Email Address</label>
-                <input type="email" id="alumniEmail" name="alumniEmail" placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">
-                <label for="alumniPassword">Password</label>
-                <input type="password" id="alumniPassword" name="alumniPassword" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="btn btn-alumni">ALUMNI LOGIN</button>
-            <a href="#" class="link">Forgot Password?</a>
-            <p style="margin-top: 30px;">New Alumni? 
-                <a href="#" class="link register-link" onclick="showRegistrationForm()">Register Here</a>
-            </p>
-        </form>
-    </div>
+        <div class="panel alumni-panel">
+            <h2>Alumni Network</h2>
+            <form id="alumniLoginForm">
+                <div class="form-group">
+                    <label for="alumniEmail">Email Address</label>
+                    <input type="email" id="alumniEmail" name="alumniEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="alumniPassword">Password</label>
+                    <input type="password" id="alumniPassword" name="alumniPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-alumni">ALUMNI LOGIN</button>
+                <a href="#" class="link">Forgot Password?</a>
+                <p style="margin-top: 30px;">New Alumni?
+                    <a href="#" class="link register-link" onclick="showRegistrationForm()">Register Here</a>
+                </p>
+            </form>
+        </div>
     </div>
 
-    <!-- Registration Form (Initially Hidden) -->
-    <div id="register-form" style="display: none;">
+    <!-- Registration Form -->
+    <div id="register-form">
         <h2>Alumni Registration</h2>
-        <form>
+        <form id="registerForm">
             <div class="form-group">
                 <label for="regName">Full Name</label>
                 <input type="text" id="regName" name="regName" placeholder="Your Full Name" required>
@@ -360,8 +283,35 @@
             document.getElementById('register-form').style.display = 'none';
             document.getElementById('login-container').style.display = 'flex';
         }
+
+        // Registration submit
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            alert("Registration Successful! Redirecting to Profile Setup...");
+            window.location.href = "alumni_details.html";
+        });
+
+        // Alumni login submit
+        document.getElementById('alumniLoginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert("Login Successful! Alumni Dashboard coming soon...");
+            window.location.href = "#"; // Placeholder until alumni dashboard is ready
+        });
+
+        // Admin login submit
+        document.getElementById('adminLoginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert("Admin Login Successful! Redirecting to Admin Dashboard...");
+            window.location.href = "admin_dash.html"; // Your completed admin dashboard page
+        });
     </script>
-
 </body>
-
 </html>

@@ -365,3 +365,54 @@ function buildDashboard(data){
 
 </body>
 </html>
+<!-- Back Button Script (optional if using anchor) -->
+<script>
+  // No extra JS needed if using a simple anchor for navigation
+</script>
+<!-- Add Back Button to Header -->
+<script>
+  // Insert back button into header (right side)
+  const header = document.querySelector('header');
+  if (header) {
+    // Create a wrapper for flex layout if not present
+    if (!header.querySelector('.header-flex')) {
+      const flexDiv = document.createElement('div');
+      flexDiv.className = 'header-flex';
+      flexDiv.style.display = 'flex';
+      flexDiv.style.justifyContent = 'space-between';
+      flexDiv.style.alignItems = 'center';
+
+      // Move all header children into flexDiv
+      while (header.firstChild) {
+        flexDiv.appendChild(header.firstChild);
+      }
+      header.appendChild(flexDiv);
+    }
+    const flexDiv = header.querySelector('.header-flex');
+
+    // Create back button
+    const backBtn = document.createElement('a');
+    backBtn.href = '/';
+    backBtn.textContent = '← Back to Home';
+    backBtn.style.cssText = `
+      display:inline-block;
+      background:#164949;
+      color:#a0f0e0;
+      font-weight:600;
+      padding:7px 18px;
+      border-radius:7px;
+      text-decoration:none;
+      font-size:1rem;
+      transition:background 0.2s;
+      margin-left:24px;
+    `;
+    backBtn.onmouseover = () => backBtn.style.background = '#1abc9c';
+    backBtn.onmouseout = () => backBtn.style.background = '#164949';
+
+    // Add back button to the right
+    // If not already present
+    if (!flexDiv.querySelector('a[href="/"]')) {
+      flexDiv.appendChild(backBtn);
+    }
+  }
+</script>

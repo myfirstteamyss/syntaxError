@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alumni Dashboard</title>
+  <link rel="icon" href="data:," />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f2b33;
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #143d46;
+      border-bottom: 1px solid #1e4e57;
+    }
+
+    .navbar .logo {
+      color: #62f3d4;
+      margin: 0;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar a {
+      color: #c8d6d8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .navbar a:hover, .navbar a.active {
+      color: #62f3d4;
+    }
+
+    /* Main Layout */
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      flex: 1;
+    }
+
+    .card {
+      background: #1b3e47;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .card h2 {
+      color: #62f3d4;
+      margin-top: 0;
+    }
+
+    /* Profile Section */
+    .profile-section p {
+      margin: 0.3rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #143d46;
+      border-top: 1px solid #1e4e57;
+      margin-top: auto;
+    }
+
+    .highlight-link {
+      color: #62f3d4;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <h1 class="logo">Alumni Dashboard</h1>
+    <ul>
+      <li><a href="#" class="active">Dashboard</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">Mentorship</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main class="dashboard-container">
+    <!-- Left Section: Events & Mentorship -->
+    <div class="card">
+      <h2>Upcoming Events</h2>
+      <p># Placeholder for event list</p>
+
+      <h2>Mentorship</h2>
+      <p># Placeholder for mentorship details</p>
+
+      <h2>Students Registered</h2>
+      <p># Placeholder for students registered under this alumni</p>
+    </div>
+
+    <!-- Right Section: Profile -->
+    <div class="card profile-section">
+      <h2>Your Profile</h2>
+      <p><strong>Name:</strong> <span id="pName"></span></p>
+      <p><strong>Passout Year:</strong> <span id="pPassout"></span></p>
+      <p><strong>Companies:</strong> <span id="pCompanies"></span></p>
+      <p><strong>Job Title:</strong> <span id="pJob"></span></p>
+      <p><strong>Location:</strong> <span id="pLocation"></span></p>
+      <p><strong>Gender:</strong> <span id="pGender"></span></p>
+      <p><strong>Degree:</strong> <span id="pDegree"></span></p>
+      <p><strong>Major Course:</strong> <span id="pMajor"></span></p>
+      <p><strong>Experience:</strong> <span id="pExp"></span></p>
+      <p><strong>LinkedIn:</strong> <span id="pLinkedin"></span></p>
+      <p><strong>GitHub:</strong> <span id="pGithub"></span></p>
+      <p><strong>Mentorship:</strong> <span id="pMentorship"></span></p>
+      <p><strong>Donations:</strong> <span id="pDonations"></span></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Alumni Network. All rights reserved.</p>
+  </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('alumniData');
+      if (saved) {
+        const data = JSON.parse(saved);
+        document.getElementById('pName').textContent = data.name;
+        document.getElementById('pPassout').textContent = data.passoutYear;
+        document.getElementById('pCompanies').textContent = data.companies || '-';
+        document.getElementById('pJob').textContent = data.jobTitle;
+        document.getElementById('pLocation').textContent = data.location;
+        document.getElementById('pGender').textContent = data.gender;
+        document.getElementById('pDegree').textContent = data.degree;
+        document.getElementById('pMajor').textContent = data.major;
+        document.getElementById('pExp').textContent = data.experience || '0';
+        document.getElementById('pLinkedin').innerHTML = `<a class="highlight-link" href="${data.linkedin}" target="_blank">${data.linkedin}</a>`;
+        document.getElementById('pGithub').innerHTML = data.github ? `<a class="highlight-link" href="${data.github}" target="_blank">${data.github}</a>` : '-';
+        document.getElementById('pMentorship').textContent = data.mentorship;
+        document.getElementById('pDonations').textContent = data.donations || '-';
+      } else {
+        document.querySelector('.profile-section').innerHTML += '<p>No profile found. Please register first.</p>';
+      }
+    });
+  </script>
+</body>
+</html>
